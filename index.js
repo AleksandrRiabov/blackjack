@@ -1,7 +1,7 @@
 let playerNumber;
 let deallerNumber;
 let hitMore;
-let playGame = confirm("Hello! Do you want to play some Black Jack today?");
+let playGame = confirm("Hello! \n  Do you want to play some Black Jack today?");
 
 while (playGame) {
   runTheGame();
@@ -51,29 +51,29 @@ function dealDealler() {
 function checkResults() {
   // If player has too many
   if (playerNumber > 21) {
-    alert(`You have ${playerNumber}, That's too many..  DEALLER WINS!`);
+    alert(`You have ${playerNumber}, That's too many..  \n \n DEALLER WINS!`);
     return
   }
 
   // Iplayer has 21 or player number is bigger than dealler's number
   if ((playerNumber === 21 && deallerNumber !== 21)
     || (playerNumber < 21 && playerNumber > deallerNumber)) {
-    alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}. ==== YOU WIN ====!`);
+    alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}.\n \n ==== YOU WIN ====!`);
     return
   }
   // If draw
-  if (playerNumber === deallerNumber) { 
-    alert(`Your score is ${playerNumber}, and Dealler has ${deallerNumber}.  That's the DRAW!`);
+  if (playerNumber === deallerNumber) {
+    alert(`Your score is ${playerNumber}, and Dealler has ${deallerNumber}. \n \n That's the PUSH`);
     return
   }
 
   // Idealler has too many
   if (deallerNumber > 21) {
-    alert(`Dealler has ${deallerNumber}, that's too many.  ==== YOU WIN ====!`);
+    alert(`Dealler has ${deallerNumber}, that's too many. \n \n ==== YOU WIN ====!`);
     return
   }
 
   // Other not winning scenarios
-  alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}.  DEALLER WINS!`);
+  alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}. \n \n DEALLER WINS!`);
 }
 
