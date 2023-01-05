@@ -2,6 +2,7 @@ let playerNumber;
 let deallerNumber;
 let hitMore;
 let playGame = confirm("Hello! \n  Do you want to play some Black Jack today?");
+let deallerCards = [];
 
 while (playGame) {
   runTheGame();
@@ -13,8 +14,10 @@ while (playGame) {
 
 //RESET INITIAL SCORE IF ANY, AND RUN THE GAME
 function runTheGame() {
+  deallerCards = [];
   playerNumber = deal(21, 4);
   deallerNumber = deal(11, 2);
+  deallerCards.push(deallerNumber);
   hitMore = confirm(`You have ${playerNumber}, do you want to hit more?`);
 
   dealPlayer();
@@ -43,7 +46,9 @@ function dealPlayer() {
 // Deals additional number for the dealler if dealler has less then 17
 function dealDealler() {
   while (deallerNumber < 17) {
-    deallerNumber += deal(11, 2);
+    const newNumber = deal(11, 2);
+    deallerNumber +=  newNumber;
+    deallerCards.push(newNumber);
   }
 }
 
@@ -58,22 +63,22 @@ function checkResults() {
   // Iplayer has 21 or player number is bigger than dealler's number
   if ((playerNumber === 21 && deallerNumber !== 21)
     || (playerNumber < 21 && playerNumber > deallerNumber)) {
-    alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}.\n \n ==== YOU WIN ====!`);
+    alert(`Your score is ${playerNumber}\n Dealler has ${deallerCards}, Total off: ${deallerNumber}.\n \n ==== YOU WIN ====!`);
     return
   }
   // If draw
   if (playerNumber === deallerNumber) {
-    alert(`Your score is ${playerNumber}, and Dealler has ${deallerNumber}. \n \n That's the PUSH`);
+    alert(`Your score is ${playerNumber}\n Dealler has ${deallerCards} Total off:  ${deallerNumber}. \n \n That's the PUSH`);
     return
   }
 
   // Idealler has too many
   if (deallerNumber > 21) {
-    alert(`Dealler has ${deallerNumber}, that's too many. \n \n ==== YOU WIN ====!`);
+    alert(`Dealler has ${deallerCards}, Total off ${deallerNumber}, that's too many. \n \n ==== YOU WIN ====!`);
     return
   }
 
   // Other not winning scenarios
-  alert(`Your score is ${playerNumber} and Dealler has ${deallerNumber}. \n \n DEALLER WINS!`);
+  alert(`Your score is ${playerNumber} \n Dealler has ${deallerCards}, Total: ${deallerNumber}. \n \n DEALLER WINS!`);
 }
 
